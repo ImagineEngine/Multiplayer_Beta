@@ -7,7 +7,7 @@ var raw_data = fs.readFileSync('data.json')
 var file = JSON.parse(raw_data);
 
 var app = express()
- 
+
 var server = app.listen(3000, listening)
 
 function listening(){
