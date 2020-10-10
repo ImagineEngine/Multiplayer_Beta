@@ -1,1 +1,1 @@
-import backend.js
+require('fs')
