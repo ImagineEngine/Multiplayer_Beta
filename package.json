@@ -4,7 +4,8 @@
   "description": "attempt 1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -14,9 +15,12 @@
     "multiplayer"
   ],
   "author": "A_Bit_Codey",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ImagineEngine/Multiplayer_Beta/issues"
   },
-  "homepage": "https://github.com/ImagineEngine/Multiplayer_Beta#readme"
+  "homepage": "https://github.com/ImagineEngine/Multiplayer_Beta#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }

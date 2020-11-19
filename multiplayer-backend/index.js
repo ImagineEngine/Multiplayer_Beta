@@ -1,11 +1,17 @@
-const webSocketsServerPort = 8000;
+const webSocketsServerPort = 8000 || process.env.PORT;
 const webSocketServer = require('websocket').server;
 const http = require('http');
 var n = 0;
 
 const server = http.createServer();
-server.listen(webSocketsServerPort);
-console.log('listening on port 8000');
+server.listen(webSocketsServerPort, (err) => {
+  if (err) {
+    console.log(`There was an error starting the port at ${webSocketsServerPort}...`);
+  } else {
+    console.log(`Server is listening on port ${webSocketsServerPort}...`);
+  }
+});
+//console.log('listening on port 8000');
 
 const wsServer = new webSocketServer({
   httpServer: server
@@ -31,20 +37,20 @@ wsServer.on('request', function (request) {
         playerTerminal[userID].sendUTF(JSON.stringify({status: 'registered', id: userID}));
         console.log('new user')
       }
-      if (data.status == 'update'){
-        players[String(data.userID)].position.x = data.position.x
-        players[String(data.userID)].position.y = data.position.y
+      if (data.status == 'update') {
+        players[String(data.userID)].position.x = data.position.x;
+        players[String(data.userID)].position.y = data.position.y;
         sendAll(JSON.stringify(players));
-        console.log('updated'+String(n))
-        n += 1
+        console.log('updated'+String(n));
+        n += 1;
       }
     }
   })
 
 });
 
-function sendAll(message){
-  for (var player in playerTerminal){
+function sendAll(message) {
+  for (var player in playerTerminal) {
     playerTerminal[player].sendUTF(message);
   }
 }
